@@ -43,6 +43,7 @@ class ConsumerCon:
 
 
 
+
     @staticmethod
     def consumer_loop():
         consumer = ConsumerCon.create_consumer()

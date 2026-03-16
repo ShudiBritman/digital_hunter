@@ -13,6 +13,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+
 kafka_host = os.getenv("KAFKA_HOST")
 kafka_port = int(os.getenv("KAFKA_PORT"))
 
