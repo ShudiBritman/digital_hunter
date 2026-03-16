@@ -21,6 +21,24 @@ class DataBase:
             password=self.password,
             database=self.database
         )
+    
+
+    def init_db(self):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        query = '''CREATE TABLE IF NOT EXIST targets(
+            entity_id VARCHAR(100) PRIMARY KEY,
+            reported_lat FLOAT NOT NULL,
+            reported_lon FLOAT NOT NULL,
+            priority_level INT NOT NULL,
+            status VARCHAR(50) DEFAULT 'active');
+
+            CREATE TABLE IF NOT EXIST signals(
+            timestamp,
+            signal_id INT PRIMARY KEY,
+            signal_type 
+            )
+        '''
 
 
         
