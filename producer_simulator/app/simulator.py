@@ -4,6 +4,7 @@ import random
 import time
 import uuid
 from datetime import datetime, timezone
+import os
 from typing import Any
 
 from kafka import KafkaProducer
@@ -362,4 +363,7 @@ def _summarize(msg: dict[str, Any]) -> str:
 
 
 if __name__ == "__main__":
-    run_simulator()
+    kafka_host = os.getenv("KAFKA_HOST")
+    kafka_port = int(os.getenv("KAFKA_PORT"))
+    bootstrap_servers = f"{kafka_host}:{kafka_port}"
+    run_simulator(bootstrap_servers=bootstrap_servers)
