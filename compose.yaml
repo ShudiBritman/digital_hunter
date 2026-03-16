@@ -50,6 +50,19 @@ services:
 
     networks:
       - backend
+
+  attack-service:
+    build: ./attack_service
+    container_name: attack-service
+    environment:
+      KAFKA_HOST: kafka
+      KAFKA_PORT: 9092
+
+      ELASTIC_HOST: elasticsearch
+      ELASTIC_PORT: 9200
+    depends_on:
+      kafka:
+        condition: service_healthy
       
   elasticsearch:
     image: elasticsearch:7.17.10
