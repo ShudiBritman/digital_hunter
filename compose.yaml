@@ -44,9 +44,17 @@ services:
 
       ELASTIC_HOST: elasticsearch
       ELASTIC_PORT: 9200
+
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: 'test'
+      MYSQL_PASS: 'pass'
+      MYSQL_DATABASE: digital_hunter
     depends_on:
       kafka:
         condition: service_healthy
+      mysql:
+        condition: service_health
 
     networks:
       - backend
@@ -60,9 +68,20 @@ services:
 
       ELASTIC_HOST: elasticsearch
       ELASTIC_PORT: 9200
+
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: 'test'
+      MYSQL_PASS: 'pass'
+      MYSQL_DATABASE: digital_hunter
     depends_on:
       kafka:
         condition: service_healthy
+      mysql:
+        condition: service_health
+
+    networks:
+      - backend
       
   elasticsearch:
     image: elasticsearch:7.17.10
@@ -91,6 +110,30 @@ services:
     networks:
       - backend
 
+  mysql:
+    container_name: mysql
+    restart: always
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 'test_pass'
+      MYSQL_USER: 'test'
+      MYSQL_PASS: 'pass'
+      MYSQL_DATABASE: digital_hunter
+    volumes_from:
+      - data
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - if [[ -z "$(ls -A /docker-entrypoint-initdb.d)" ]]; then
+              mysql -u root -p123456 -e 'select 0'
+          else
+              mysql -u root -p123456 --database my_db -e 'show tables' | [ $(wc -l) -gt 100 ]
+          fi
+      interval: 10s
+      timeout: 10s
+      retries: 50
 
 networks:
   backend:
