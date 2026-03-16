@@ -24,5 +24,18 @@ services:
     volumes:
       - kafka_kraft:/var/lib/kafka/data
 
+
+  simulator-service:
+    build: ./producer_simulator
+    container_name: simulator-service
+    environment:
+      KAFKA_HOST: kafka
+      KAFKA_PORT: 9092
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+    networks:
+      - backend
 volumes:
   kafka_kraft:
