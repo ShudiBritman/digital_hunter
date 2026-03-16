@@ -38,7 +38,7 @@ class ConsumerCon:
         try:
             signal = IntelSignal(**data)
             logger.info("Valid signal %s", signal)
-            log_event("INFO", logger.info("Valid signal %s", signal))
+            log_event("INFO", "Valid signal %s", signal)
         except Exception as e:
             event = {
                 "data": data,
