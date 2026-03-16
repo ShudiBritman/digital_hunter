@@ -43,5 +43,11 @@ services:
 
     networks:
       - backend
+
+    
+
+networks:
+  backend:
+    driver: bridge
 volumes:
   kafka_kraft:
