@@ -8,8 +8,8 @@ services:
       MYSQL_USER: 'test'
       MYSQL_PASS: 'pass'
       MYSQL_DATABASE: digital_hunter
-    volumes_from:
-      - data
+    volumes:
+      - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
     healthcheck: 
@@ -97,7 +97,7 @@ services:
       kafka:
         condition: service_healthy
       mysql:
-        condition: service_health
+        condition: service_healthy
 
     networks:
       - backend
@@ -122,7 +122,7 @@ services:
       kafka:
         condition: service_healthy
       mysql:
-        condition: service_health
+        condition: service_healthy
 
     networks:
       - backend
