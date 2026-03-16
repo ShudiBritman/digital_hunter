@@ -65,4 +65,4 @@ class ConsumerCon:
             
                 ConsumerCon.handle_message(msg)
         finally:
-            consumer.close
+            consumer.close()
