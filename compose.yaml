@@ -32,7 +32,7 @@ services:
       retries: 15
 
   simulator-service:
-    build: ./producer_simulator
+    build: ./simulator_service
     container_name: simulator-service
     environment:
       KAFKA_HOST: kafka
