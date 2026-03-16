@@ -1,6 +1,7 @@
 from confluent_kafka import Consumer
 from app.utils.logger import log_event
 from app.schemas.intel_schema import IntelSignal
+from app.kafka_producer.dlq_producer import ProducerConn
 import logging
 import json
 import os
@@ -38,6 +39,12 @@ class ConsumerCon:
             signal = IntelSignal(**data)
             logger.info("Valid signal %s", signal)
             log_event("INFO", logger.info("Valid signal %s", signal))
+        except Exception as e:
+            event = {
+                "data": data,
+                "error": str(e)
+            }
+            ProducerConn.send_event_to_kafka(event)
 
 
 
