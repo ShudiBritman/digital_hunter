@@ -23,7 +23,13 @@ services:
 
     volumes:
       - kafka_kraft:/var/lib/kafka/data
-
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "bash", "-c", "nc -z localhost 9092"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
 
   simulator-service:
     build: ./producer_simulator
