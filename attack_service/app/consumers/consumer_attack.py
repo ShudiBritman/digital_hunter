@@ -1,6 +1,7 @@
 from confluent_kafka import Consumer
 from utils.logger import log_event
 from schemas.attack_schema import AttackSignal
+from services.attack_service import Processor
 import logging
 import json
 import os
@@ -36,6 +37,8 @@ class ConsumerCon:
         data = json.loads(value)
         signal = AttackSignal(**data)
         logger.info("Valid signal %s", signal)
+        Processor.process(signal)
+
 
 
 
