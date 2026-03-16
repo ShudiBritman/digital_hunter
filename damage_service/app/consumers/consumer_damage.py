@@ -30,6 +30,8 @@ class ConsumerCon:
         return Consumer(config)
     
 
+
+
     @staticmethod
     def handle_message(msg):
         value = msg.value().decode("utf-8")
