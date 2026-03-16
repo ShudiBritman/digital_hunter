@@ -1,7 +1,7 @@
 from confluent_kafka import Consumer
-from app.utils.logger import log_event
-from app.schemas.intel_schema import IntelSignal
-from app.kafka_producer.dlq_producer import ProducerConn
+from utils.logger import log_event
+from schemas.intel_schema import IntelSignal
+from kafka_producer.dlq_producer import ProducerConn
 import logging
 import json
 import os

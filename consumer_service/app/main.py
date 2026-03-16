@@ -1,4 +1,4 @@
-from app.consumers.consumer_intel import ConsumerCon
+from consumers.consumer_intel import ConsumerCon
 
 
 def main():
