@@ -35,6 +35,7 @@ class ConsumerCon:
     def handle_message(msg):
         value = msg.value().decode("utf-8")
         data = json.loads(value)
+        logger.info("data %s", data)
         signal = AttackSignal(**data)
         logger.info("Valid signal %s", signal)
         Processor.process(signal)

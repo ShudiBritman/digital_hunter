@@ -160,3 +160,4 @@ networks:
     driver: bridge
 volumes:
   kafka_kraft:
+  mysql_data:
