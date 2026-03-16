@@ -50,6 +50,9 @@ services:
     environment:
       KAFKA_HOST: kafka
       KAFKA_PORT: 9092
+
+      ELASTIC_HOST: elasticsearch
+      ELASTIC_PORT: 9200
     depends_on:
       kafka:
         condition: service_healthy
