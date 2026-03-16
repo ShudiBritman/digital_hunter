@@ -1,5 +1,6 @@
 from confluent_kafka import Consumer
 from utils.logger import log_event
+from services.damage_service import Processor
 import logging
 import json
 import os
@@ -33,6 +34,7 @@ class ConsumerCon:
     def handle_message(msg):
         value = msg.value().decode("utf-8")
         data = json.loads(value)
+        Processor.process(data)
         
 
 
