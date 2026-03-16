@@ -44,7 +44,18 @@ services:
     networks:
       - backend
 
-    
+  consumers-service:
+  build: ./consumer_service
+  container_name: consumers-service
+  environment:
+    KAFKA_HOST: kafka
+    KAFKA_PORT: 9092
+  depends_on:
+    kafka:
+      condition: service_healthy
+
+  networks:
+    - backend
 
 networks:
   backend:
