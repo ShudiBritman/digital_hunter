@@ -34,11 +34,12 @@ class DataBase:
             status VARCHAR(50) DEFAULT 'active');
 
             CREATE TABLE IF NOT EXIST signals(
-            timestamp,
+            timestamp DATETIME,
             signal_id INT PRIMARY KEY,
-            signal_type 
+            signal_type VARCHAR(50)
             )
         '''
+        cursor.execute(query)
 
 
         
