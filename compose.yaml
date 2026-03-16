@@ -54,8 +54,8 @@ services:
       kafka:
         condition: service_healthy
 
-  networks:
-    - backend
+    networks:
+      - backend
 
 networks:
   backend:
