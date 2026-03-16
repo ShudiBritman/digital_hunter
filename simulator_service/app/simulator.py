@@ -363,7 +363,4 @@ def _summarize(msg: dict[str, Any]) -> str:
 
 
 if __name__ == "__main__":
-    kafka_host = os.getenv("KAFKA_HOST")
-    kafka_port = int(os.getenv("KAFKA_PORT"))
-    bootstrap_servers = f"{kafka_host}:{kafka_port}"
-    run_simulator(bootstrap_servers=bootstrap_servers)
+    run_simulator()
